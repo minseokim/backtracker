@@ -28,14 +28,14 @@ let callStackDepth = 0;
 */
 const trace = function(step) {
   const type = step.type;
-  let currentEnvironment = step.environment;
+  let currentEnvironment = [step.environment];
+  let prevEnvironment;
+  let prevStep;
 
-  if (type === 'initRecursive') {
-    callStackDepth++;
-  }
-
-  if (type === 'returnRecursive') {
-    callStackDepth--;
+  //Need to add to previous environment
+  if (steps.length > 0) {
+    prevStep = steps[steps.length-1];
+    prevEnvironment = prevStep.environment;
   }
 
   //need to create copy of step's result variable
@@ -43,15 +43,50 @@ const trace = function(step) {
     step.environment.result = step.environment.result.slice();
   }
 
-  let newStep = { callStackDepth };
-  for (let key in step) {
-    newStep[key] = step[key];
+
+  if (type === 'initRecursive') {
+    callStackDepth++;
+    //Deep copy prevEnvironment, then add currentEnvironment
+
+    console.log('prevEnvironment :', JSON.stringify(prevEnvironment));
+    let prevEnvCopy = JSON.parse(JSON.stringify(prevEnvironment));
+    console.log(prevEnvCopy);
+    console.log('current before concat :', currentEnvironment);
+    currentEnvironment = prevEnvCopy.concat(currentEnvironment);
+    console.log('current AFTER concat :', currentEnvironment);
   }
+
+
+  if (type === 'returnRecursive') {
+    callStackDepth--;
+  }
+
+  //Need to swap last added trace call with current trace call
+  if (callStackDepth > 0 && type !== 'initRecursive') {
+    let prevEnvCopy = JSON.parse(JSON.stringify(prevEnvironment));
+    prevEnvCopy[prevEnvCopy.length-1] = step.environment;
+    currentEnvironment = prevEnvCopy;
+  }
+
+  let newStep = { callStackDepth };
+
+  for (let key in step) {
+    if (key === 'environment') {
+      newStep[key] = currentEnvironment;
+    } else {
+      newStep[key] = step[key];
+    }
+  }
+
   steps.push(newStep);
-  return currentEnvironment
+
+  console.log(newStep);
+
+  return currentEnvironment;
 }
 
 const parenthesesGeneratorWrapper = function(n) {
+
   trace({
     type: 'initWrapper',
     line: 0,
@@ -75,31 +110,35 @@ const parenthesesGeneratorWrapper = function(n) {
   trace({
     type : 'firstRecursiveCall',
     line : 20,
-    environment: { n, result, soFar, open, closed, max},
+    environment: { n, result },
   });
 
-  parenthesesGeneratorRecurse(soFar, open, closed, max, result, 0);
+  parenthesesGeneratorRecurse(soFar, open, closed, max, result);
 
   trace({
     type : 'returnRecursive',
     line : 20,
-    environment: { n, result, soFar, open, closed, max},
+    environment: { n, result},
   });
 
   trace({
     type : 'finishWrapper',
     line : 21,
-    environment: { n, result, soFar, open, closed, max},
+    environment: { n, result },
   });
+
   return;
 };
+
+
 
 const parenthesesGeneratorRecurse = function(soFar, open, closed, max, result) {
 
   trace({
     type : 'initRecursive',
     line : 4,
-    environment : {result : result, soFar, open, closed, max},
+    environment : {result, soFar, open, closed, max},
+    calledWith : `parenthesesGeneratorRecurse(${soFar}, ${open}, ${closed}, ${max}`,
   });
 
   //We've reached base case
@@ -107,6 +146,7 @@ const parenthesesGeneratorRecurse = function(soFar, open, closed, max, result) {
       type : 'compare',
       line : 6,
       environment : {result, soFar, open, closed, max},
+      calledWith : `parenthesesGeneratorRecurse(${soFar}, ${open}, ${closed}, ${max}`,
     }) && (soFar.length === max * 2)) {
 
     //push to solution
@@ -116,12 +156,14 @@ const parenthesesGeneratorRecurse = function(soFar, open, closed, max, result) {
       type : 'AddToSolution',
       line : 7,
       environment : {result, soFar, open, closed, max},
+      calledWith : `parenthesesGeneratorRecurse(${soFar}, ${open}, ${closed}, ${max}`,
     });
 
     trace({
       type : 'return',
       line : 8,
       environment : {result, soFar, open, closed, max},
+      calledWith : `parenthesesGeneratorRecurse(${soFar}, ${open}, ${closed}, ${max}`,
     });
     return;
   }
@@ -130,22 +172,26 @@ const parenthesesGeneratorRecurse = function(soFar, open, closed, max, result) {
   if (trace({
     type : 'compare',
     line : 11,
-    environment : {result, soFar, open, closed, max}
+    environment : {result, soFar, open, closed, max},
+    calledWith : `parenthesesGeneratorRecurse(${soFar}, ${open}, ${closed}, ${max}`,
   }) && (open < max)) {
 
     //start another recursive call
     trace({
       type : 'recurse',
       line : 12,
-      environment : {result, soFar, open, closed, max}
+      environment : {result, soFar, open, closed, max},
+      calledWith : `parenthesesGeneratorRecurse(${soFar}, ${open}, ${closed}, ${max}`,
     });
+
     parenthesesGeneratorRecurse(soFar + '(', open+1, closed, max, result);
 
     //add returnRecursive after recursive call completes
     trace({
       type : 'returnRecursive',
       line : 12,
-      environment : {result, soFar, open, closed, max}
+      environment : {result, soFar, open, closed, max},
+      calledWith : `parenthesesGeneratorRecurse(${soFar}, ${open}, ${closed}, ${max}`,
     });
   }
 
@@ -153,25 +199,30 @@ const parenthesesGeneratorRecurse = function(soFar, open, closed, max, result) {
   if (trace({
     type : 'compare',
     line : 15,
-    environment : {result, soFar, open, closed, max}
+    environment : {result, soFar, open, closed, max},
+    calledWith : `parenthesesGeneratorRecurse(${soFar}, ${open}, ${closed}, ${max}`,
   }) && (closed < open)) {
 
     //start another recursive call
     trace({
       type : 'recurse',
       line : 16,
-      environment : {result, soFar, open, closed, max}
+      environment : {result, soFar, open, closed, max},
+      calledWith : `parenthesesGeneratorRecurse(${soFar}, ${open}, ${closed}, ${max}`,
     });
+
     parenthesesGeneratorRecurse(soFar + ')', open, closed+1, max, result);
 
     //add returnRecursive after recursive call completes
     trace({
       type : 'returnRecursive',
       line : 16,
-      environment : {result, soFar, open, closed, max}
+      environment : {result, soFar, open, closed, max},
+      calledWith : `parenthesesGeneratorRecurse(${soFar}, ${open}, ${closed}, ${max}`,
     });
   }
 };
+
 
 parenthesesGeneratorWrapper(1);
 
