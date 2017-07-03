@@ -6,7 +6,8 @@ import './App.css';
 const steps = [];
 let callStackDepth = 0;
 
-/* Each Step keeps track of :
+/*
+Each Step keeps track of :
   1. callStackDepth
   2. CurrentLine
   3. Type
@@ -26,16 +27,22 @@ let callStackDepth = 0;
       - invokeFirstRecursiveCall
       - recurse
 */
+
+const deepCopy = (obj) => {
+  return JSON.parse(JSON.stringify(obj));
+};
+
+
 const trace = function(step) {
   const type = step.type;
   let currentEnvironment = [step.environment];
   let prevEnvironment;
   let prevStep;
 
-  //Need to add to previous environment
+  //Deep copy previous environment first
   if (steps.length > 0) {
     prevStep = steps[steps.length-1];
-    prevEnvironment = prevStep.environment;
+    prevEnvironment = deepCopy(prevStep.environment);
   }
 
   //need to create copy of step's result variable
@@ -46,26 +53,22 @@ const trace = function(step) {
 
   if (type === 'initRecursive') {
     callStackDepth++;
-    //Deep copy prevEnvironment, then add currentEnvironment
-
-    console.log('prevEnvironment :', JSON.stringify(prevEnvironment));
-    let prevEnvCopy = JSON.parse(JSON.stringify(prevEnvironment));
-    console.log(prevEnvCopy);
-    console.log('current before concat :', currentEnvironment);
-    currentEnvironment = prevEnvCopy.concat(currentEnvironment);
-    console.log('current AFTER concat :', currentEnvironment);
+    //Concat currentEnvironment to previous environment to create stacks of recursive environments
+    currentEnvironment = prevEnvironment.concat(currentEnvironment);
   }
 
 
-  if (type === 'returnRecursive') {
+  if (callStackDepth > 0 && type === 'returnRecursive') {
     callStackDepth--;
+    //Remove the last added call stack when returning from recursion
+    prevEnvironment.pop();
+    currentEnvironment = prevEnvironment;
   }
 
-  //Need to swap last added trace call with current trace call
+  //If we're in the middle of recursion, just swap the last stack current environment with current environment(Preserves call stack depth, but updates environment)
   if (callStackDepth > 0 && type !== 'initRecursive') {
-    let prevEnvCopy = JSON.parse(JSON.stringify(prevEnvironment));
-    prevEnvCopy[prevEnvCopy.length-1] = step.environment;
-    currentEnvironment = prevEnvCopy;
+    prevEnvironment[prevEnvironment.length-1] = step.environment;
+    currentEnvironment = prevEnvironment;
   }
 
   let newStep = { callStackDepth };
