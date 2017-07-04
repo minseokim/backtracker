@@ -1,16 +1,17 @@
 import React from "react";
 
 const CodeDisplay = (props) => {
-  console.log('codeDisplay Props :', props);
+  const { sourceCode, line } = props;
+
   return (
     <div className="CodeDisplay">
       <pre className="CodeDisplay__pre">
         <ol>
-          {props.sourceCode.split('\n').map((fnLine, index) => {
+          {sourceCode.split('\n').map((fnLine, index) => {
             return (
               <li
                 key={index}
-                style={ {backgroundColor : index === props.line ? 'orange' : 'white'}}
+                style={ {backgroundColor : index === line ? 'orange' : 'white'}}
               >
                 {fnLine}
               </li>

@@ -1,9 +1,8 @@
 import React from "react";
 
 const EnvironmentDisplay = (props) => {
-  const context = props.context;
-  console.log('context :', context);
-  window.context = context;
+  const { context } = props;
+
   return (
     <div className="EnvironmentDisplay">
       {context.map((currentEnv) => {

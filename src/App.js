@@ -265,10 +265,8 @@ class App extends Component {
   handlePrevClick() {
 
     this.setState((prevState) => {
-      if (prevState.currentStepIndex > 0) {
-        return {
-          currentStepIndex : prevState.currentStepIndex-1
-        }
+      return {
+        currentStepIndex : prevState.currentStepIndex-1
       }
     });
   }
@@ -276,10 +274,8 @@ class App extends Component {
   handleNextClick() {
 
     this.setState((prevState) => {
-      if (prevState.currentStepIndex < prevState.steps.length-2) {
-        return {
-          currentStepIndex : prevState.currentStepIndex+1
-        }
+      return {
+        currentStepIndex : prevState.currentStepIndex+1
       }
     });
   }
@@ -290,6 +286,8 @@ class App extends Component {
           <ButtonDisplay
             onPrevClick={this.handlePrevClick}
             onNextClick={this.handleNextClick}
+            stepIndex={this.state.currentStepIndex}
+            stepLength={this.state.steps.length}
           />
           <CodeDisplay
             line={this.state.steps[this.state.currentStepIndex].line}
