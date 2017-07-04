@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import EnvironmentDisplay from './components/EnvironmentDisplay';
-import CodeDisplay from './components/CodeDisplay';
-import ButtonDisplay from './components/ButtonDisplay';
-import logo from "./logo.svg";
+import EnvironmentDisplay from "./components/EnvironmentDisplay";
+import CodeDisplay from "./components/CodeDisplay";
+import ButtonDisplay from "./components/ButtonDisplay";
 import "./App.css";
 
 /*
@@ -29,10 +28,8 @@ Each Step keeps track of :
 
 const steps = [];
 let callStackDepth = 0;
-let currentStepIndex = 0;
 
-const ParenthesesGeneratorSourceCode =
-  `const generateParenthesis = function(n) {
+const ParenthesesGeneratorSourceCode = `const generateParenthesis = function(n) {
         const result = [];
 
         const generate = function(soFar, open, closed, max) {
@@ -256,27 +253,25 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      steps : steps,
-      currentStepIndex : 0
-    }
+      steps: steps,
+      currentStepIndex: 0
+    };
     this.handlePrevClick = this.handlePrevClick.bind(this);
     this.handleNextClick = this.handleNextClick.bind(this);
   }
   handlePrevClick() {
-
-    this.setState((prevState) => {
+    this.setState(prevState => {
       return {
-        currentStepIndex : prevState.currentStepIndex-1
-      }
+        currentStepIndex: prevState.currentStepIndex - 1
+      };
     });
   }
 
   handleNextClick() {
-
-    this.setState((prevState) => {
+    this.setState(prevState => {
       return {
-        currentStepIndex : prevState.currentStepIndex+1
-      }
+        currentStepIndex: prevState.currentStepIndex + 1
+      };
     });
   }
   render() {
@@ -292,7 +287,7 @@ class App extends Component {
           <CodeDisplay
             line={this.state.steps[this.state.currentStepIndex].line}
             sourceCode={ParenthesesGeneratorSourceCode}
-            />
+          />
           <EnvironmentDisplay
             context={this.state.steps[this.state.currentStepIndex].environment}
           />
