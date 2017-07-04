@@ -31,9 +31,7 @@ const steps = [];
 let callStackDepth = 0;
 let currentStepIndex = 0;
 
-const ParenthesesGeneratorSourceCode = () => {
-  return;
-  `const generateParenthesis = function(n) {
+const ParenthesesGeneratorSourceCode = `const generateParenthesis = function(n) {
         const result = [];
 
         const generate = function(soFar, open, closed, max) {
@@ -55,7 +53,6 @@ const ParenthesesGeneratorSourceCode = () => {
         generate('', 0, 0, n);
         return result;
     };`;
-};
 
 const deepCopy = obj => {
   return JSON.parse(JSON.stringify(obj));
@@ -135,7 +132,7 @@ const parenthesesGeneratorWrapper = function(n) {
   //invoke recursive function
   trace({
     type: "firstRecursiveCall",
-    line: 20,
+    line: 19,
     environment: { n, result }
   });
 
@@ -143,13 +140,13 @@ const parenthesesGeneratorWrapper = function(n) {
 
   trace({
     type: "returnRecursive",
-    line: 20,
+    line: 19,
     environment: { n, result }
   });
 
   trace({
     type: "finishWrapper",
-    line: 21,
+    line: 20,
     environment: { n, result }
   });
 
@@ -159,7 +156,7 @@ const parenthesesGeneratorWrapper = function(n) {
 const parenthesesGeneratorRecurse = function(soFar, open, closed, max, result) {
   trace({
     type: "initRecursive",
-    line: 4,
+    line: 3,
     environment: { result, soFar, open, closed, max },
     calledWith: `parenthesesGeneratorRecurse(${soFar}, ${open}, ${closed}, ${max}`
   });
@@ -168,7 +165,7 @@ const parenthesesGeneratorRecurse = function(soFar, open, closed, max, result) {
   if (
     trace({
       type: "compare",
-      line: 6,
+      line: 5,
       environment: { result, soFar, open, closed, max },
       calledWith: `parenthesesGeneratorRecurse(${soFar}, ${open}, ${closed}, ${max}`
     }) &&
@@ -179,14 +176,14 @@ const parenthesesGeneratorRecurse = function(soFar, open, closed, max, result) {
 
     trace({
       type: "AddToSolution",
-      line: 7,
+      line: 6,
       environment: { result, soFar, open, closed, max },
       calledWith: `parenthesesGeneratorRecurse(${soFar}, ${open}, ${closed}, ${max}`
     });
 
     trace({
       type: "return",
-      line: 8,
+      line: 7,
       environment: { result, soFar, open, closed, max },
       calledWith: `parenthesesGeneratorRecurse(${soFar}, ${open}, ${closed}, ${max}`
     });
@@ -197,7 +194,7 @@ const parenthesesGeneratorRecurse = function(soFar, open, closed, max, result) {
   if (
     trace({
       type: "compare",
-      line: 11,
+      line: 10,
       environment: { result, soFar, open, closed, max },
       calledWith: `parenthesesGeneratorRecurse(${soFar}, ${open}, ${closed}, ${max}`
     }) &&
@@ -206,7 +203,7 @@ const parenthesesGeneratorRecurse = function(soFar, open, closed, max, result) {
     //start another recursive call
     trace({
       type: "recurse",
-      line: 12,
+      line: 11,
       environment: { result, soFar, open, closed, max },
       calledWith: `parenthesesGeneratorRecurse(${soFar}, ${open}, ${closed}, ${max}`
     });
@@ -216,7 +213,7 @@ const parenthesesGeneratorRecurse = function(soFar, open, closed, max, result) {
     //add returnRecursive after recursive call completes
     trace({
       type: "returnRecursive",
-      line: 12,
+      line: 11,
       environment: { result, soFar, open, closed, max },
       calledWith: `parenthesesGeneratorRecurse(${soFar}, ${open}, ${closed}, ${max}`
     });
@@ -226,7 +223,7 @@ const parenthesesGeneratorRecurse = function(soFar, open, closed, max, result) {
   if (
     trace({
       type: "compare",
-      line: 15,
+      line: 14,
       environment: { result, soFar, open, closed, max },
       calledWith: `parenthesesGeneratorRecurse(${soFar}, ${open}, ${closed}, ${max}`
     }) &&
@@ -235,7 +232,7 @@ const parenthesesGeneratorRecurse = function(soFar, open, closed, max, result) {
     //start another recursive call
     trace({
       type: "recurse",
-      line: 16,
+      line: 15,
       environment: { result, soFar, open, closed, max },
       calledWith: `parenthesesGeneratorRecurse(${soFar}, ${open}, ${closed}, ${max}`
     });
@@ -245,7 +242,7 @@ const parenthesesGeneratorRecurse = function(soFar, open, closed, max, result) {
     //add returnRecursive after recursive call completes
     trace({
       type: "returnRecursive",
-      line: 16,
+      line: 15,
       environment: { result, soFar, open, closed, max },
       calledWith: `parenthesesGeneratorRecurse(${soFar}, ${open}, ${closed}, ${max}`
     });
@@ -270,9 +267,10 @@ class App extends Component {
           />
           <CodeDisplay
             line={this.state.steps[this.state.currentStepIndex].line}
+            sourceCode={ParenthesesGeneratorSourceCode}
             />
           <EnvironmentDisplay
-            step={this.state.steps[this.state.currentStepIndex].environment}
+            context={this.state.steps[this.state.currentStepIndex].environment}
           />
         </div>
       </div>

@@ -1,11 +1,12 @@
 import React from "react";
 
 const EnvironmentDisplay = (props) => {
-  const step = props.step;
-  console.log('step :', step);
+  const context = props.context;
+  console.log('context :', context);
+  window.context = context;
   return (
     <div>
-      {step.map((currentEnv) => {
+      {context.map((currentEnv) => {
         return (
           <div key={JSON.stringify(currentEnv)}>
             {Object.keys(currentEnv).map((key) => {
