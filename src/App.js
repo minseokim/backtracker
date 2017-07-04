@@ -256,7 +256,7 @@ class App extends Component {
     super();
     this.state = {
       steps : steps,
-      currentStepIndex : 14
+      currentStepIndex : 0
     }
   }
   render() {

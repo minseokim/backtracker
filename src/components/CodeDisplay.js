@@ -2,12 +2,23 @@ import React from "react";
 
 const CodeDisplay = (props) => {
   console.log('codeDisplay Props :', props);
-  props.sourceCode.split('\n').map((line) => {
-    console.log(line);
-  })
   return (
     <div>
-      Insert Code Block Here
+      <pre>
+        <ol>
+          {props.sourceCode.split('\n').map((fnLine, index) => {
+            return (
+              <li
+                key={index}
+                style={ {backgroundColor : index === props.line ? 'orange' : 'white'}}
+              >
+                {fnLine}
+              </li>
+            )
+
+          })}
+        </ol>
+      </pre>
     </div>
   );
 };
