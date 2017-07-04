@@ -5,7 +5,7 @@ const EnvironmentDisplay = (props) => {
   console.log('context :', context);
   window.context = context;
   return (
-    <div>
+    <div className="EnvironmentDisplay">
       {context.map((currentEnv) => {
         return (
           <div key={JSON.stringify(currentEnv)}>

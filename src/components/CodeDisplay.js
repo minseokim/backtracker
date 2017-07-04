@@ -3,8 +3,8 @@ import React from "react";
 const CodeDisplay = (props) => {
   console.log('codeDisplay Props :', props);
   return (
-    <div>
-      <pre>
+    <div className="CodeDisplay">
+      <pre className="CodeDisplay__pre">
         <ol>
           {props.sourceCode.split('\n').map((fnLine, index) => {
             return (

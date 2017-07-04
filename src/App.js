@@ -31,7 +31,8 @@ const steps = [];
 let callStackDepth = 0;
 let currentStepIndex = 0;
 
-const ParenthesesGeneratorSourceCode = `const generateParenthesis = function(n) {
+const ParenthesesGeneratorSourceCode =
+  `const generateParenthesis = function(n) {
         const result = [];
 
         const generate = function(soFar, open, closed, max) {
@@ -258,12 +259,37 @@ class App extends Component {
       steps : steps,
       currentStepIndex : 0
     }
+    this.handlePrevClick = this.handlePrevClick.bind(this);
+    this.handleNextClick = this.handleNextClick.bind(this);
+  }
+  handlePrevClick() {
+
+    this.setState((prevState) => {
+      if (prevState.currentStepIndex > 0) {
+        return {
+          currentStepIndex : prevState.currentStepIndex-1
+        }
+      }
+    });
+  }
+
+  handleNextClick() {
+
+    this.setState((prevState) => {
+      if (prevState.currentStepIndex < prevState.steps.length-2) {
+        return {
+          currentStepIndex : prevState.currentStepIndex+1
+        }
+      }
+    });
   }
   render() {
     return (
       <div className="App">
         <div>
           <ButtonDisplay
+            onPrevClick={this.handlePrevClick}
+            onNextClick={this.handleNextClick}
           />
           <CodeDisplay
             line={this.state.steps[this.state.currentStepIndex].line}
