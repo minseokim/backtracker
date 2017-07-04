@@ -255,14 +255,24 @@ const parenthesesGeneratorRecurse = function(soFar, open, closed, max, result) {
 parenthesesGeneratorWrapper(1);
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      steps : steps,
+      currentStepIndex : 14
+    }
+  }
   render() {
     return (
       <div className="App">
         <div>
           <ButtonDisplay
           />
-          <CodeDisplay />
+          <CodeDisplay
+            line={this.state.steps[this.state.currentStepIndex].line}
+            />
           <EnvironmentDisplay
+            step={this.state.steps[this.state.currentStepIndex].environment}
           />
         </div>
       </div>
