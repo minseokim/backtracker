@@ -4,6 +4,7 @@ import ParenthesesGeneratorDisplay from "./components/ParenthesesGeneratorDispla
 const App = () => {
   return (
     <div className="App">
+      <h1>Backtracker </h1>
       <ParenthesesGeneratorDisplay />
     </div>
   );

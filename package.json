@@ -14,7 +14,8 @@
     "global": "^4.3.2",
     "prettier": "^1.5.2",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "spectre.css": "^0.2.14"
   },
   "scripts": {
     "start": "react-scripts start",
