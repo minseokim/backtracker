@@ -1,19 +1,13 @@
-import React from 'React';
+import React from 'react';
 
 const ButtonDisplay = (props) => {
   return (
     <div>
       <button
-        onClick={() => {
-          props.onPrevClick(props.currentStepIndex);
-        }}
       >
         Prev
       </button>
       <button
-        onClick={() => {
-          props.onNextClick(props.currentStepIndex);
-        }}
       >
         Next
       </button>

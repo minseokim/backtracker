@@ -1,15 +1,16 @@
-import React, { Component } from "react";
+import React from "react";
 
 const EnvironmentDisplay = (props) => {
+      // {Object.keys(props.environment).map(key => {
+      //   return (
+      //     <div key={key}>
+      //       {key} = {JSON.stringify(props.environment[key])}
+      //     </div>
+      //   );
+      // })}
   return (
     <div>
-      {Object.keys(props.environment).map(key => {
-        return (
-          <div key={key}>
-            {key} = {JSON.stringify(props.environment[key])}
-          </div>
-        );
-      })}
+      Display Environment Here
     </div>
   );
 };

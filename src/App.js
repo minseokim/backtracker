@@ -256,18 +256,13 @@ parenthesesGeneratorWrapper(1);
 
 class App extends Component {
   render() {
-
     return (
       <div className="App">
         <div>
           <ButtonDisplay
-            onPrevClick={handlePrevClick}
-            onNextClick={handleNextClick}
-            currentStepIndex={currentStepIndex}
           />
           <CodeDisplay />
           <EnvironmentDisplay
-            environment={currentEnvironment}
           />
         </div>
       </div>
