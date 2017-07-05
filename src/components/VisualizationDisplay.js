@@ -5,10 +5,13 @@ import ButtonDisplay from "./ButtonDisplay";
 import { steps } from "./../trace";
 import ParenthesesGenerator from "./../Algorithms/ParenthesesGenerator";
 import ParenthesesGeneratorSourceCode from "./../Algorithms/ParenthesesGeneratorSourceCode";
+import RockPaperScissorsSourceCode from "./../Algorithms/RockPaperScissorsSourceCode";
+import RockPaperScissors from "./../Algorithms/RockPaperScissors";
 
-ParenthesesGenerator(1);
+// ParenthesesGenerator(1);
+RockPaperScissors(1);
 
-class ParenthesesGeneratorDisplay extends Component {
+class VisualizationDisplay extends Component {
   constructor() {
     super();
     this.state = {
@@ -35,7 +38,7 @@ class ParenthesesGeneratorDisplay extends Component {
   }
   render() {
     return (
-      <div className="ParenthesesGeneratorDisplay">
+      <div className="VisualizationDisplay">
         <div>
           <ButtonDisplay
             onPrevClick={this.handlePrevClick}
@@ -45,7 +48,7 @@ class ParenthesesGeneratorDisplay extends Component {
           />
           <CodeDisplay
             line={this.state.steps[this.state.currentStepIndex].line}
-            sourceCode={ParenthesesGeneratorSourceCode}
+            sourceCode={RockPaperScissorsSourceCode}
           />
           <EnvironmentDisplay
             context={this.state.steps[this.state.currentStepIndex].environment}
@@ -56,4 +59,4 @@ class ParenthesesGeneratorDisplay extends Component {
   }
 }
 
-export default ParenthesesGeneratorDisplay;
+export default VisualizationDisplay;

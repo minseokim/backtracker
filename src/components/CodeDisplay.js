@@ -1,6 +1,7 @@
 import React from "react";
 
 const CodeDisplay = props => {
+  console.log("props :", props);
   const { sourceCode, line } = props;
 
   return (

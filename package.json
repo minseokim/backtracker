@@ -2,7 +2,9 @@
   "name": "backtracker",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://minseokim.github.io/backtracker",
   "devDependencies": {
+    "gh-pages": "^1.0.0",
     "react-scripts": "1.0.10"
   },
   "dependencies": {
@@ -19,6 +21,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",

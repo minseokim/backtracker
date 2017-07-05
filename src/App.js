@@ -1,5 +1,5 @@
 import React from "react";
-import ParenthesesGeneratorDisplay from "./components/ParenthesesGeneratorDisplay";
+import VisualizationDisplay from "./components/VisualizationDisplay";
 
 const App = () => {
   return (
@@ -9,7 +9,7 @@ const App = () => {
         <p>To understand recursion, one must first understand recursion. </p>
         <cite>Stephen Hawking</cite>
       </blockquote>
-      <ParenthesesGeneratorDisplay />
+      <VisualizationDisplay />
     </div>
   );
 };

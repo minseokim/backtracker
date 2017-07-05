@@ -12,17 +12,15 @@ const RockPaperScissorsRecurse = function RockPaperScissorsRecurse(
     environment: { result, playedSoFar, roundCount }
   });
 
+  trace({
+    type: "compare",
+    line: 5,
+    environment: { result, playedSoFar, roundCount }
+  });
   // We've reached base case
-  if (
-    trace({
-      type: "compare",
-      line: 5,
-      environment: { result, playedSoFar, roundCount }
-    }) &&
-    playedSoFar.length === roundCount
-  ) {
+  if (playedSoFar.length === roundCount) {
     // push to solution
-    result.push(playedSoFar.slice());
+    result.push(playedSoFar);
 
     trace({
       type: "AddToSolution",
@@ -99,7 +97,7 @@ const RockPaperScissorsWrapper = function RockPaperScissorsWrapper(roundCount) {
   trace({
     type: "assign",
     line: 1,
-    environment: { hands }
+    environment: { roundCount, hands }
   });
 
   const result = [];
@@ -116,7 +114,7 @@ const RockPaperScissorsWrapper = function RockPaperScissorsWrapper(roundCount) {
   trace({
     type: "firstRecursiveCall",
     line: 16,
-    environment: { roundCount, result, playedSoFar }
+    environment: { roundCount, hands, result, playedSoFar }
   });
 
   RockPaperScissorsRecurse(playedSoFar, result, roundCount, hands);
@@ -124,14 +122,16 @@ const RockPaperScissorsWrapper = function RockPaperScissorsWrapper(roundCount) {
   trace({
     type: "returnRecursive",
     line: 16,
-    environment: { roundCount, result }
+    environment: { roundCount, hands, result }
   });
 
   trace({
     type: "finishWrapper",
     line: 17,
-    environment: { roundCount, result }
+    environment: { roundCount, hands, result }
   });
-  console.log("result :", result);
+
   return result;
 };
+
+export default RockPaperScissorsWrapper;

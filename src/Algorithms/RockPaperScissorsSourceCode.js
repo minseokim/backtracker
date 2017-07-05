@@ -1,11 +1,10 @@
-const RockPaperScissorsSourceCode = () => {
-  return `const rockPaperScissorsPermutation = roundCount => {
+const RockPaperScissorsSourceCode = `const rockPaperScissorsPermutation = roundCount => {
     const hands = ["rock", "paper", "scissors"];
     let result = [];
 
     const generator = playedSoFar => {
       if (playedSoFar.length === roundCount) {
-        result.push(playedSoFar.slice());
+        result.push(playedSoFar);
       } else {
         for (let i = 0; i < hands.length; i++) {
           const nextHand = hands[i];
@@ -18,6 +17,5 @@ const RockPaperScissorsSourceCode = () => {
     generator([]);
     return result;
   };`;
-};
 
 export default RockPaperScissorsSourceCode;
