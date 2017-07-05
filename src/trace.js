@@ -1,4 +1,19 @@
 /*
+  Trace snapshots each step of function
+    Types of events :
+      - initWrapper
+      - initRecursive
+      - compare
+      - assign
+      - AddToSolution
+      - returnRecursive(returning from Recursive function)
+      - return(just return any value)
+      - finishWrapper
+      - invokeFirstRecursiveCall
+      - recurse
+*/
+
+/*
 Each Step keeps track of :
   1. callStackDepth
   2. CurrentLine

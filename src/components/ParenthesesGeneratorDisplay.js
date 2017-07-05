@@ -6,21 +6,6 @@ import { steps } from "./../trace";
 import ParenthesesGenerator from "./../Algorithms/ParenthesesGenerator";
 import ParenthesesGeneratorSourceCode from "./../Algorithms/ParenthesesGeneratorSourceCode";
 
-/*
-  Trace snapshots each step of function
-    Types of events :
-      - initWrapper
-      - initRecursive
-      - compare
-      - assign
-      - AddToSolution
-      - returnRecursive(returning from Recursive function)
-      - return(just return any value)
-      - finishWrapper
-      - invokeFirstRecursiveCall
-      - recurse
-*/
-
 ParenthesesGenerator(1);
 
 class ParenthesesGeneratorDisplay extends Component {
