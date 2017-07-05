@@ -8,8 +8,8 @@ import ParenthesesGeneratorSourceCode from "./../Algorithms/ParenthesesGenerator
 import RockPaperScissorsSourceCode from "./../Algorithms/RockPaperScissorsSourceCode";
 import RockPaperScissors from "./../Algorithms/RockPaperScissors";
 
-ParenthesesGenerator(2);
-// RockPaperScissors(1);
+// ParenthesesGenerator(2);
+RockPaperScissors(2);
 
 steps.forEach(step => {
   console.log("step :", step);
@@ -52,7 +52,7 @@ class VisualizationDisplay extends Component {
           />
           <CodeDisplay
             line={this.state.steps[this.state.currentStepIndex].line}
-            sourceCode={ParenthesesGeneratorSourceCode}
+            sourceCode={RockPaperScissorsSourceCode}
           />
           <EnvironmentDisplay
             context={this.state.steps[this.state.currentStepIndex].environment}

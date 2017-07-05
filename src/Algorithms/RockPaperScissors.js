@@ -33,8 +33,6 @@ const RockPaperScissorsWrapper = function RockPaperScissorsWrapper(roundCount) {
   });
 
   const RockPaperScissorsRecurse = function(playedSoFar) {
-    console.log("playedSoFar :", playedSoFar);
-
     trace({
       type: "initRecursive",
       line: 4,
@@ -113,7 +111,6 @@ const RockPaperScissorsWrapper = function RockPaperScissorsWrapper(roundCount) {
         RockPaperScissorsRecurse(playedSoFar.slice());
 
         // pop from playedSoFar
-        // playedSoFarCopy = JSON.parse(JSON.stringify(playedSoFar));
         playedSoFar.pop();
 
         trace({
@@ -127,7 +124,13 @@ const RockPaperScissorsWrapper = function RockPaperScissorsWrapper(roundCount) {
             currentHand
           }
         });
-      }
+      } // For loop ends
+
+      trace({
+        type: "returnRecursive",
+        line: 12,
+        environment: { result, playedSoFar, roundCount }
+      });
     }
   };
 
