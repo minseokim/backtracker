@@ -2,7 +2,7 @@ import React from "react";
 
 const EnvironmentDisplay = props => {
   const { context } = props;
-
+  console.log("context :", context);
   return (
     <div className="EnvironmentDisplay">
       {context.map((currentEnv, firstKey) => {

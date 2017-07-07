@@ -11,10 +11,6 @@ import RockPaperScissors from "./../Algorithms/RockPaperScissors";
 // ParenthesesGenerator(2);
 RockPaperScissors(2);
 
-steps.forEach(step => {
-  console.log("step :", step);
-});
-
 class VisualizationDisplay extends Component {
   constructor() {
     super();

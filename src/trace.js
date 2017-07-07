@@ -30,25 +30,23 @@ const deepCopy = obj => {
 };
 
 const trace = step => {
-  const type = step.type;
-  let currentEnvironment = [step.environment];
+  // Since we want snapshots, deep copy the entire context(each step of algorithm)
+  const stepCopy = deepCopy(step);
+
+  const type = stepCopy.type;
+  let currentEnvironment = [stepCopy.environment];
   let prevEnvironment;
   let prevStep;
 
-  // Deep copy previous environment first
+  // Make copy of last added environment(prevEnvironment)
   if (steps.length > 0) {
     prevStep = steps[steps.length - 1];
     prevEnvironment = deepCopy(prevStep.environment);
   }
 
-  // need to create copy of step's result variable
-  if (step.environment.result) {
-    step.environment.result = step.environment.result.slice();
-  }
-
   if (type === "initRecursive") {
     callStackDepth += 1;
-    // Concat currentEnvironment to previous environment to create stacks of recursive environments
+    // Concat currentEnvironment to previous environment to create new stack for new recursive call
     currentEnvironment = prevEnvironment.concat(currentEnvironment);
   }
 
@@ -61,19 +59,17 @@ const trace = step => {
 
   // If we're in the middle of recursion, just swap the last stack current environment with current environment(Preserves call stack depth, but updates environment)
   if (callStackDepth > 0 && type !== "initRecursive") {
-    prevEnvironment[prevEnvironment.length - 1] = step.environment;
+    prevEnvironment[prevEnvironment.length - 1] = stepCopy.environment;
     currentEnvironment = prevEnvironment;
   }
 
   const newStep = { callStackDepth };
 
-  for (let key in step) {
-    if (key === "environment") {
-      newStep[key] = currentEnvironment;
-    } else {
-      newStep[key] = step[key];
-    }
-  }
+  Object.keys(stepCopy).forEach(key => {
+    key === "environment"
+      ? (newStep[key] = currentEnvironment)
+      : (newStep[key] = stepCopy[key]);
+  });
 
   steps.push(newStep);
 

@@ -33,6 +33,8 @@ const RockPaperScissorsWrapper = function RockPaperScissorsWrapper(roundCount) {
   });
 
   const RockPaperScissorsRecurse = function(playedSoFar) {
+    console.log("RECURSION START ARGUMENT PLAYEDSOFAR :", playedSoFar);
+
     trace({
       type: "initRecursive",
       line: 4,
@@ -78,9 +80,6 @@ const RockPaperScissorsWrapper = function RockPaperScissorsWrapper(roundCount) {
           environment: { result, playedSoFar, roundCount, i, currentHand }
         });
 
-        // console.log("playedSoFar before PUSH :", playedSoFar);
-        // let playedSoFarCopy = JSON.parse(JSON.stringify(playedSoFar));
-        // playedSoFarCopy.push(currentHand);
         playedSoFar.push(currentHand);
 
         trace({
@@ -88,7 +87,7 @@ const RockPaperScissorsWrapper = function RockPaperScissorsWrapper(roundCount) {
           line: 10,
           environment: {
             result,
-            playedSoFar: playedSoFar.slice(),
+            playedSoFar,
             roundCount,
             i,
             currentHand
@@ -100,7 +99,7 @@ const RockPaperScissorsWrapper = function RockPaperScissorsWrapper(roundCount) {
           line: 11,
           environment: {
             result,
-            playedSoFar: playedSoFar.slice(),
+            playedSoFar,
             roundCount,
             i,
             currentHand
@@ -108,7 +107,7 @@ const RockPaperScissorsWrapper = function RockPaperScissorsWrapper(roundCount) {
         });
 
         // Enter Recursive Call
-        RockPaperScissorsRecurse(playedSoFar.slice());
+        RockPaperScissorsRecurse(playedSoFar);
 
         // pop from playedSoFar
         playedSoFar.pop();
@@ -125,10 +124,9 @@ const RockPaperScissorsWrapper = function RockPaperScissorsWrapper(roundCount) {
           }
         });
       } // For loop ends
-
       trace({
         type: "returnRecursive",
-        line: 12,
+        line: 11,
         environment: { result, playedSoFar, roundCount }
       });
     }
