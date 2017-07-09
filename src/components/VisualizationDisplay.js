@@ -23,21 +23,36 @@ class VisualizationDisplay extends Component {
     };
     this.handlePrevClick = this.handlePrevClick.bind(this);
     this.handleNextClick = this.handleNextClick.bind(this);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
+  }
+  componentWillMount() {
+    window.addEventListener("keyup", this.handleKeyUp);
+  }
+  handleKeyUp(e) {
+    if (e.key === "ArrowRight") {
+      this.handleNextClick();
+    } else if (e.key === "ArrowLeft") {
+      this.handlePrevClick();
+    }
   }
   handlePrevClick() {
-    this.setState(prevState => {
-      return {
-        currentStepIndex: prevState.currentStepIndex - 1
-      };
-    });
+    if (this.state.currentStepIndex > 0) {
+      this.setState(prevState => {
+        return {
+          currentStepIndex: prevState.currentStepIndex - 1
+        };
+      });
+    }
   }
 
   handleNextClick() {
-    this.setState(prevState => {
-      return {
-        currentStepIndex: prevState.currentStepIndex + 1
-      };
-    });
+    if (this.state.currentStepIndex < this.state.steps.length - 1) {
+      this.setState(prevState => {
+        return {
+          currentStepIndex: prevState.currentStepIndex + 1
+        };
+      });
+    }
   }
   render() {
     return (
