@@ -19,3 +19,7 @@
 .EnvironmentDisplay {
   margin-top: 45px;
 }
+
+.ButtonDisplay__label {
+  margin-left: 20px;
+}

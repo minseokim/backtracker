@@ -64,7 +64,7 @@ class VisualizationDisplay extends Component {
     return (
       <div className="VisualizationDisplay container">
         <div className="columns">
-          <div className="column col-xl-8 col-lg-12">
+          <div className="column col-8 col-lg-12">
             <ButtonDisplay
               onPrevClick={this.handlePrevClick}
               onNextClick={this.handleNextClick}
@@ -76,7 +76,7 @@ class VisualizationDisplay extends Component {
               sourceCode={CombinationsSourceCode}
             />
           </div>
-          <div className="column col-xl-4 col-lg-12">
+          <div className="column col-4 col-lg-12">
             <EnvironmentDisplay
               context={
                 this.state.steps[this.state.currentStepIndex].environment

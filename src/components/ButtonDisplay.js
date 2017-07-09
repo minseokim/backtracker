@@ -18,6 +18,9 @@ const ButtonDisplay = props => {
       >
         Next
       </button>
+      <span className="ButtonDisplay__label label">
+        Click or use left/right on keyboard to navigate
+      </span>
     </div>
   );
 };

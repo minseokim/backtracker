@@ -8,13 +8,15 @@ const App = () => {
       <div className="column col-11 centered">
         <header className="navbar">
           <section className="navbar-section">
-            <h1>Backtracker </h1>
-            <blockquote>
-              <p>
-                To understand recursion, one must first understand recursion.{" "}
-              </p>
-              <cite>Stephen Hawking</cite>
-            </blockquote>
+            <div className="">
+              <h1>Backtracker </h1>
+              <blockquote>
+                <p>
+                  To understand recursion, one must first understand recursion.{" "}
+                </p>
+                <cite>Stephen Hawking</cite>
+              </blockquote>
+            </div>
           </section>
           <section className="navbar-section">
             <ul className="menu">
