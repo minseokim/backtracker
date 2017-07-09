@@ -3,7 +3,7 @@ import VisualizationDisplay from "./components/VisualizationDisplay";
 
 const App = () => {
   return (
-    <div className="App">
+    <div className="App container">
       <h1>Backtracker </h1>
       <blockquote>
         <p>To understand recursion, one must first understand recursion. </p>

@@ -9,9 +9,10 @@ const EnvironmentDisplay = props => {
         return (
           <div key={firstKey}>
             {Object.keys(currentEnv).map(key => {
+              let content = JSON.stringify(currentEnv[key]);
               return (
                 <div key={key}>
-                  {key} = {JSON.stringify(currentEnv[key])}
+                  {key} = <span>{content}</span>
                 </div>
               );
             })}

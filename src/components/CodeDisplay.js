@@ -5,13 +5,15 @@ const CodeDisplay = props => {
 
   return (
     <div className="CodeDisplay">
-      <pre className="CodeDisplay__pre">
+      <pre className="CodeDisplay__pre prettyprint lang-javascript">
         <ol>
           {sourceCode.split("\n").map((fnLine, index) => {
             return (
               <li
                 key={index}
-                style={{ backgroundColor: index === line ? "orange" : "white" }}
+                style={{
+                  backgroundColor: index === line ? "#ffb700" : "white"
+                }}
               >
                 {fnLine}
               </li>

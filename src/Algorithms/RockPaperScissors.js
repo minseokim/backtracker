@@ -7,6 +7,12 @@ const RockPaperScissorsWrapper = function RockPaperScissorsWrapper(roundCount) {
     environment: { roundCount }
   });
 
+  const urls = [
+    `<img src="https://image.ibb.co/fFiRNv/rock.png" />`,
+    `<img src="https://image.ibb.co/iUA6Nv/hand.png" />`,
+    `<img src="https://image.ibb.co/gB349a/scissors.png" />`
+  ];
+
   const hands = ["rock", "paper", "scissors"];
 
   trace({
@@ -33,18 +39,16 @@ const RockPaperScissorsWrapper = function RockPaperScissorsWrapper(roundCount) {
   });
 
   const RockPaperScissorsRecurse = function(playedSoFar) {
-    console.log("RECURSION START ARGUMENT PLAYEDSOFAR :", playedSoFar);
-
     trace({
       type: "initRecursive",
       line: 4,
-      environment: { result, playedSoFar, roundCount }
+      environment: { roundCount, playedSoFar, result }
     });
 
     trace({
       type: "compare",
       line: 5,
-      environment: { result, playedSoFar, roundCount }
+      environment: { roundCount, playedSoFar, result }
     });
     // We've reached base case
     if (playedSoFar.length === roundCount) {
@@ -54,13 +58,13 @@ const RockPaperScissorsWrapper = function RockPaperScissorsWrapper(roundCount) {
       trace({
         type: "AddToSolution",
         line: 6,
-        environment: { result, playedSoFar, roundCount }
+        environment: { roundCount, playedSoFar, result }
       });
 
       trace({
         type: "returnRecursive",
         line: 11,
-        environment: { result, playedSoFar, roundCount }
+        environment: { roundCount, playedSoFar, result }
       });
     } else {
       // Otherwise loop over hands
@@ -69,7 +73,7 @@ const RockPaperScissorsWrapper = function RockPaperScissorsWrapper(roundCount) {
         trace({
           type: "loop",
           line: 8,
-          environment: { result, playedSoFar, roundCount, i }
+          environment: { roundCount, playedSoFar, result, i }
         });
 
         const currentHand = hands[i];
@@ -77,7 +81,7 @@ const RockPaperScissorsWrapper = function RockPaperScissorsWrapper(roundCount) {
         trace({
           type: "assign",
           line: 9,
-          environment: { result, playedSoFar, roundCount, i, currentHand }
+          environment: { roundCount, playedSoFar, result, i, currentHand }
         });
 
         playedSoFar.push(currentHand);
@@ -86,10 +90,9 @@ const RockPaperScissorsWrapper = function RockPaperScissorsWrapper(roundCount) {
           type: "push",
           line: 10,
           environment: {
-            result,
-            playedSoFar,
             roundCount,
-            i,
+            playedSoFar,
+            result,
             currentHand
           }
         });
@@ -98,9 +101,9 @@ const RockPaperScissorsWrapper = function RockPaperScissorsWrapper(roundCount) {
           type: "recurse",
           line: 11,
           environment: {
-            result,
-            playedSoFar,
             roundCount,
+            playedSoFar,
+            result,
             i,
             currentHand
           }
@@ -116,9 +119,9 @@ const RockPaperScissorsWrapper = function RockPaperScissorsWrapper(roundCount) {
           type: "pop",
           line: 12,
           environment: {
-            result,
-            playedSoFar,
             roundCount,
+            playedSoFar,
+            result,
             i,
             currentHand
           }
@@ -127,7 +130,7 @@ const RockPaperScissorsWrapper = function RockPaperScissorsWrapper(roundCount) {
       trace({
         type: "returnRecursive",
         line: 11,
-        environment: { result, playedSoFar, roundCount }
+        environment: { roundCount, playedSoFar, result }
       });
     }
   };

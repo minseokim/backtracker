@@ -38,21 +38,27 @@ class VisualizationDisplay extends Component {
   }
   render() {
     return (
-      <div className="VisualizationDisplay">
-        <div>
-          <ButtonDisplay
-            onPrevClick={this.handlePrevClick}
-            onNextClick={this.handleNextClick}
-            stepIndex={this.state.currentStepIndex}
-            stepLength={this.state.steps.length}
-          />
-          <CodeDisplay
-            line={this.state.steps[this.state.currentStepIndex].line}
-            sourceCode={RockPaperScissorsSourceCode}
-          />
-          <EnvironmentDisplay
-            context={this.state.steps[this.state.currentStepIndex].environment}
-          />
+      <div className="VisualizationDisplay container">
+        <ButtonDisplay
+          onPrevClick={this.handlePrevClick}
+          onNextClick={this.handleNextClick}
+          stepIndex={this.state.currentStepIndex}
+          stepLength={this.state.steps.length}
+        />
+        <div className="columns">
+          <div className="column col-9">
+            <CodeDisplay
+              line={this.state.steps[this.state.currentStepIndex].line}
+              sourceCode={RockPaperScissorsSourceCode}
+            />
+          </div>
+          <div className="column col-3">
+            <EnvironmentDisplay
+              context={
+                this.state.steps[this.state.currentStepIndex].environment
+              }
+            />
+          </div>
         </div>
       </div>
     );

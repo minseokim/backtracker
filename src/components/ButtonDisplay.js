@@ -5,10 +5,18 @@ const ButtonDisplay = props => {
 
   return (
     <div className="ButtonDisplay">
-      <button onClick={onPrevClick} disabled={stepIndex <= 0}>
+      <button
+        onClick={onPrevClick}
+        disabled={stepIndex <= 0}
+        className="btn btn-primary"
+      >
         Prev
       </button>
-      <button onClick={onNextClick} disabled={stepIndex >= stepLength - 1}>
+      <button
+        onClick={onNextClick}
+        disabled={stepIndex >= stepLength - 1}
+        className="btn btn-primary"
+      >
         Next
       </button>
     </div>
