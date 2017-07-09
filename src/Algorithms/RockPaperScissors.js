@@ -29,8 +29,6 @@ const RockPaperScissorsWrapper = function RockPaperScissorsWrapper(roundCount) {
     environment: { roundCount, hands, result }
   });
 
-  // const playedSoFar = [];
-
   // invoke recursive function
   trace({
     type: "firstRecursiveCall",
@@ -135,7 +133,7 @@ const RockPaperScissorsWrapper = function RockPaperScissorsWrapper(roundCount) {
     }
   };
 
-  RockPaperScissorsRecurse([], result, roundCount, hands);
+  RockPaperScissorsRecurse([]);
 
   trace({
     type: "returnRecursive",

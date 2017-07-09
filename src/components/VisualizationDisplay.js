@@ -7,9 +7,12 @@ import ParenthesesGenerator from "./../Algorithms/ParenthesesGenerator";
 import ParenthesesGeneratorSourceCode from "./../Algorithms/ParenthesesGeneratorSourceCode";
 import RockPaperScissorsSourceCode from "./../Algorithms/RockPaperScissorsSourceCode";
 import RockPaperScissors from "./../Algorithms/RockPaperScissors";
+import Permutations from "./../Algorithms/Permutations";
+import PermutationsSourceCode from "./../Algorithms/PermutationsSourceCode";
 
 // ParenthesesGenerator(2);
-RockPaperScissors(2);
+// RockPaperScissors(2);
+Permutations([1, 2]);
 
 class VisualizationDisplay extends Component {
   constructor() {
@@ -49,7 +52,7 @@ class VisualizationDisplay extends Component {
           <div className="column col-9">
             <CodeDisplay
               line={this.state.steps[this.state.currentStepIndex].line}
-              sourceCode={RockPaperScissorsSourceCode}
+              sourceCode={PermutationsSourceCode}
             />
           </div>
           <div className="column col-3">
