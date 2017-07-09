@@ -2,7 +2,7 @@ import React from "react";
 
 const EnvironmentDisplay = props => {
   const { context } = props;
-  console.log("context :", context);
+
   return (
     <div className="EnvironmentDisplay">
       {context.map((currentEnv, firstKey) => {
@@ -12,7 +12,7 @@ const EnvironmentDisplay = props => {
               let content = JSON.stringify(currentEnv[key]);
               return (
                 <div key={key}>
-                  {key} = <span>{content}</span>
+                  <span className="label">{key}</span>= <span>{content}</span>
                 </div>
               );
             })}

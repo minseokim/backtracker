@@ -9,10 +9,13 @@ import RockPaperScissorsSourceCode from "./../Algorithms/RockPaperScissorsSource
 import RockPaperScissors from "./../Algorithms/RockPaperScissors";
 import Permutations from "./../Algorithms/Permutations";
 import PermutationsSourceCode from "./../Algorithms/PermutationsSourceCode";
+import Subsets from "./../Algorithms/Subsets";
+import SubsetsSourceCode from "./../Algorithms/SubsetsSourceCode";
 
 // ParenthesesGenerator(2);
 // RockPaperScissors(2);
-Permutations([1, 2]);
+// Permutations([1, 2]);
+Subsets([1, 2]);
 
 class VisualizationDisplay extends Component {
   constructor() {
@@ -25,7 +28,7 @@ class VisualizationDisplay extends Component {
     this.handleNextClick = this.handleNextClick.bind(this);
     this.handleKeyUp = this.handleKeyUp.bind(this);
   }
-  componentWillMount() {
+  componentDidMount() {
     window.addEventListener("keyup", this.handleKeyUp);
   }
   handleKeyUp(e) {
@@ -67,7 +70,7 @@ class VisualizationDisplay extends Component {
           <div className="column col-9">
             <CodeDisplay
               line={this.state.steps[this.state.currentStepIndex].line}
-              sourceCode={PermutationsSourceCode}
+              sourceCode={SubsetsSourceCode}
             />
           </div>
           <div className="column col-3">

@@ -5,7 +5,7 @@ const CodeDisplay = props => {
 
   return (
     <div className="CodeDisplay">
-      <pre className="CodeDisplay__pre prettyprint lang-javascript">
+      <pre className="CodeDisplay__pre code" data-lang="javascript">
         <ol>
           {sourceCode.split("\n").map((fnLine, index) => {
             return (
