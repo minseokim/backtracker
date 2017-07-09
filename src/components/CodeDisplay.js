@@ -12,7 +12,7 @@ const CodeDisplay = props => {
               <li
                 key={index}
                 style={{
-                  backgroundColor: index === line ? "#ffb700" : "white"
+                  backgroundColor: index === line ? "#e9825b" : "#D8E8F8"
                 }}
               >
                 {fnLine}

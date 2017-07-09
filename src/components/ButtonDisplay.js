@@ -7,14 +7,14 @@ const ButtonDisplay = props => {
       <button
         onClick={onPrevClick}
         disabled={stepIndex <= 0}
-        className="btn btn-primary"
+        className="btn ButtonDisplay__prev"
       >
         Prev
       </button>
       <button
         onClick={onNextClick}
         disabled={stepIndex >= stepLength - 1}
-        className="btn btn-primary"
+        className="btn ButtonDisplay__next"
       >
         Next
       </button>

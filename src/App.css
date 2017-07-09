@@ -1,2 +1,21 @@
 .App {
+  display: flex;
+}
+
+.CodeDisplay {
+  background-color: #d8e8f8;
+}
+
+.CodeDisplay__pre {
+  padding: 10px;
+}
+
+.EnvironmentDisplay {
+  background-color: #a66f5d;
+  color: #ffffff;
+  padding: 10px;
+}
+
+.EnvironmentDisplay {
+  margin-top: 45px;
 }

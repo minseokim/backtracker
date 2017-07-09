@@ -63,20 +63,20 @@ class VisualizationDisplay extends Component {
   render() {
     return (
       <div className="VisualizationDisplay container">
-        <ButtonDisplay
-          onPrevClick={this.handlePrevClick}
-          onNextClick={this.handleNextClick}
-          stepIndex={this.state.currentStepIndex}
-          stepLength={this.state.steps.length}
-        />
         <div className="columns">
-          <div className="column col-9">
+          <div className="column col-xl-8 col-lg-12">
+            <ButtonDisplay
+              onPrevClick={this.handlePrevClick}
+              onNextClick={this.handleNextClick}
+              stepIndex={this.state.currentStepIndex}
+              stepLength={this.state.steps.length}
+            />
             <CodeDisplay
               line={this.state.steps[this.state.currentStepIndex].line}
               sourceCode={CombinationsSourceCode}
             />
           </div>
-          <div className="column col-3">
+          <div className="column col-xl-4 col-lg-12">
             <EnvironmentDisplay
               context={
                 this.state.steps[this.state.currentStepIndex].environment
