@@ -37,12 +37,14 @@ const SubsetsWrapper = function SubsetsWrapper(nums) {
       environment: { result, startIndex, subset }
     });
 
-    for (let i = startIndex; i < nums.length; i++) {
-      trace({
-        type: "loop",
-        line: 6,
-        environment: { result, startIndex, subset, i }
-      });
+    let i = startIndex;
+    trace({
+      type: "loop",
+      line: 6,
+      environment: { result, startIndex, subset, i, startIndex }
+    });
+
+    for (i = startIndex; i < nums.length; i++) {
       currentElementToSelect = nums[i];
       trace({
         type: "assign",
@@ -91,7 +93,7 @@ const SubsetsWrapper = function SubsetsWrapper(nums) {
       line: 9,
       environment: {
         result,
-        startIndex,
+        startIndex: startIndex - 1,
         subset,
         currentElementToSelect
       }
