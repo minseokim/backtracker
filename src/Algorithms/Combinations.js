@@ -111,17 +111,17 @@ const CombinationsWrapper = function CombinationsWrapper(A, B) {
 
       CombinationsRecurse(i + 1, soFar);
 
-      trace({
-        type: "recurseReturn",
-        line: 17,
-        environment: {
-          result,
-          startIndex,
-          soFar,
-          i,
-          currentElem
-        }
-      });
+      // trace({
+      //   type: "recurseReturn",
+      //   line: 17,
+      //   environment: {
+      //     result,
+      //     startIndex,
+      //     soFar,
+      //     i,
+      //     currentElem
+      //   }
+      // });
 
       soFar.pop();
 
@@ -137,6 +137,16 @@ const CombinationsWrapper = function CombinationsWrapper(A, B) {
         }
       });
     }
+    trace({
+      type: "returnRecursive",
+      line: 17,
+      environment: {
+        result,
+        startIndex,
+        soFar,
+        currentElem
+      }
+    });
   };
 
   // Start Recursive Call
