@@ -93,7 +93,7 @@ const App = () => {
               <VisualizationDisplay
                 sourceCode={CombinationsSourceCode}
                 wrapper={Combinations}
-                args={(4, 2)}
+                args={{ A: 4, B: 2 }}
               />}
           />
         </div>

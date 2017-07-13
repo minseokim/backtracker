@@ -2,27 +2,23 @@ import React, { Component } from "react";
 import EnvironmentDisplay from "./EnvironmentDisplay";
 import CodeDisplay from "./CodeDisplay";
 import ButtonDisplay from "./ButtonDisplay";
-import { steps } from "./../trace";
 
 class VisualizationDisplay extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      steps,
+      steps: this.props.wrapper(this.props.args),
       currentStepIndex: 0
     };
     this.handlePrevClick = this.handlePrevClick.bind(this);
     this.handleNextClick = this.handleNextClick.bind(this);
     this.handleKeyUp = this.handleKeyUp.bind(this);
   }
-  componentWillMount() {
-    this.props.wrapper(this.props.args);
-  }
   componentDidMount() {
     window.addEventListener("keyup", this.handleKeyUp);
   }
-  componentWillReceiveProps(nextProps) {
-    console.log("NextProps :", nextProps);
+  componentWillUnmount() {
+    window.removeEventListener("keyup", this.handleKeyUp);
   }
   handleKeyUp(e) {
     if (e.key === "ArrowRight") {

@@ -21,15 +21,13 @@ Each Step keeps track of :
   4. Execution Context
       - Variables(Result, soFar, open, closed)
 */
-
-const steps = [];
 let callStackDepth = 0;
 
 const deepCopy = obj => {
   return JSON.parse(JSON.stringify(obj));
 };
 
-const trace = step => {
+const trace = (step, steps) => {
   // Since we want snapshots, deep copy the entire context(each step of algorithm)
   const stepCopy = deepCopy(step);
 
@@ -76,4 +74,4 @@ const trace = step => {
   return currentEnvironment;
 };
 
-export { steps, trace };
+export { trace };
