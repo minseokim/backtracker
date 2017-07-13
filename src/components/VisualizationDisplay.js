@@ -3,26 +3,10 @@ import EnvironmentDisplay from "./EnvironmentDisplay";
 import CodeDisplay from "./CodeDisplay";
 import ButtonDisplay from "./ButtonDisplay";
 import { steps } from "./../trace";
-import ParenthesesGenerator from "./../Algorithms/ParenthesesGenerator";
-import ParenthesesGeneratorSourceCode from "./../Algorithms/ParenthesesGeneratorSourceCode";
-import RockPaperScissorsSourceCode from "./../Algorithms/RockPaperScissorsSourceCode";
-import RockPaperScissors from "./../Algorithms/RockPaperScissors";
-import Permutations from "./../Algorithms/Permutations";
-import PermutationsSourceCode from "./../Algorithms/PermutationsSourceCode";
-import Subsets from "./../Algorithms/Subsets";
-import SubsetsSourceCode from "./../Algorithms/SubsetsSourceCode";
-import Combinations from "./../Algorithms/Combinations";
-import CombinationsSourceCode from "./../Algorithms/CombinationsSourceCode";
-
-// ParenthesesGenerator(2);
-// RockPaperScissors(2);
-// Permutations([1, 2]);
-// Subsets([1, 2]);
-Combinations(3, 2);
 
 class VisualizationDisplay extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       steps,
       currentStepIndex: 0
@@ -31,8 +15,14 @@ class VisualizationDisplay extends Component {
     this.handleNextClick = this.handleNextClick.bind(this);
     this.handleKeyUp = this.handleKeyUp.bind(this);
   }
+  componentWillMount() {
+    this.props.wrapper(this.props.args);
+  }
   componentDidMount() {
     window.addEventListener("keyup", this.handleKeyUp);
+  }
+  componentWillReceiveProps(nextProps) {
+    console.log("NextProps :", nextProps);
   }
   handleKeyUp(e) {
     if (e.key === "ArrowRight") {
@@ -73,7 +63,7 @@ class VisualizationDisplay extends Component {
             />
             <CodeDisplay
               line={this.state.steps[this.state.currentStepIndex].line}
-              sourceCode={CombinationsSourceCode}
+              sourceCode={this.props.sourceCode}
             />
           </div>
           <div className="column col-4 col-lg-12">
