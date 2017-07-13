@@ -1,6 +1,11 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect
+} from "react-router-dom";
 import VisualizationDisplay from "./components/VisualizationDisplay";
 import ParenthesesGenerator from "./Algorithms/ParenthesesGenerator";
 import ParenthesesGeneratorSourceCode from "./Algorithms/ParenthesesGeneratorSourceCode";
@@ -51,6 +56,9 @@ const App = () => {
               </ul>
             </section>
           </header>
+          <Route exact path="/">
+            <Redirect to="/parens" />
+          </Route>
           <Route
             path="/parens"
             render={() =>
