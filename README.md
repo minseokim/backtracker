@@ -18,3 +18,9 @@ Recursive(Backtracking) algorithms can be tricky, but fear not! With [Backtracke
  - Walkthrough/tutorial for general backtracking problems
  - Mo' canonical backtracking problems(Sudoku, N-Queens, etc)
 
+### Built With
+- `React.js`
+- `ESLint Airbnb`
+- `create-react-app` and `gh-pages` for deployment
+- `React Router`
+- `Spectre CSS`
